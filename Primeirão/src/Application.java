@@ -6,11 +6,24 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Random;
 
+/**
+ * Aplicação principal
+ * 
+ * Implementa o java.util.Random para gerar o número das contas aleatóriamente
+ * e implementa o java.io.File para criar um arquivo com as informações da conta 
+ * o nome escolhido é o número da conta em si, para facilitar a procura.
+ * Usando o while para criar um menu mais interativo e que não finaliza o
+ * programa após 1 erro
+ *
+ * Usa a variável x para o menu e aproveita e já implementa alguns métodos da TestConta
+ * @see Resouces.TestConta
+ * 
+ */
 public class Application {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
-        ;
+
         int x = 0;
 
         while (x <= 0 || x > 2) {
@@ -18,7 +31,7 @@ public class Application {
             System.out.println("1 - Criar uma nova conta \n2 - Acessar uma conta existente ");
             x = sc.nextInt();
             sc.nextLine();
-            
+
         }
 
         switch (x) {
@@ -26,12 +39,17 @@ public class Application {
             case 1:
                 System.out.print("Por favor insira os seus dados. \nNome: ");
                 String nome = sc.nextLine();
-                System.out.print("CPF (com os pontos e linhas): ");
+                System.out.print("CPF (sem os pontos e linhas): ");
                 String CPF = sc.nextLine();
+                while (TestConta.checarCPF(CPF) == false) {
+                    System.out.println("Número inválido! O CPF deve conter exatamente 11 caracteres.");
+                    System.out.print("CPF (sem os pontos e linhas): ");
+                    CPF = sc.nextLine();
+                }
                 int numeroConta = random.nextInt(999999);
 
-                File account = new File("account" + numeroConta + ".txt");
-                FileWriter ex = new FileWriter("account" + numeroConta + ".txt");
+                File account = new File(numeroConta + ".txt");
+                FileWriter ex = new FileWriter(numeroConta + ".txt");
 
                 TestConta conta1 = new TestConta(nome, CPF, numeroConta);
 
