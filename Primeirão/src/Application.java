@@ -51,16 +51,16 @@ public class Application {
                     CPF = sc.nextLine();
                 }
                 int numeroConta = random.nextInt(999999); //Usa o java.util.random para gerar um número de 1 a 999999
-                while (f.compararNomes(numeroConta)) {//Compara o número gerado com a lista de arquivos já existente, se houver duplicidade, gera outro número
+                while (f.compararNomeDuplo(numeroConta)) {//Compara o número gerado com a lista de arquivos já existente, se houver duplicidade, gera outro número
                     System.out.println("Tentando novamente....");
                     numeroConta = random.nextInt(999999);
                 }
 
-                File account = new File("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");//Cria um arquivo .txt na pasta accounts, o nome sendo somente o número da conta
+                @SuppressWarnings("unused") File account = new File("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");//Cria um arquivo .txt na pasta accounts, o nome sendo somente o número da conta
                 FileWriter ex = new FileWriter("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");
                 TestConta conta1 = new TestConta(nome, CPF, numeroConta); //Instancia a conta com as informações fornecidas
 
-                ex.write(conta1.toString());//Escreve as informações da conta com o FileWriter
+                ex.write(conta1.fileWriter(conta1));//Escreve as informações da conta com o FileWriter
                 ex.close();
 
                 System.out.println("Conta criada com sucesso!" + conta1);
@@ -70,7 +70,14 @@ public class Application {
                  * TODO: #2 Adicionar um sistema de verificação e acesso das contas já criadas, para a opção 2
                  */
             case 2:
-                System.out.println("Opção indisponível! Tente novamente mais tarde");
+                 System.out.println("Insira o número da sua conta: ");
+                int conta = sc.nextInt();
+                while (!f.pesquisa(conta)){
+                    System.out.println("Conta não encontrada! \nInsira o número da sua conta: ");
+                    conta = sc.nextInt();
+                }
+            
+
                 break;
 
             default:
