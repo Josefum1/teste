@@ -12,6 +12,12 @@ public class TestConta {
     private String cpf;
     private int numeroConta;
     public String cpfFormatado;
+    public String cpfFormatadoTeste;
+
+
+    
+    public TestConta() {
+    }
 
     public TestConta(String nome, String cpf, int numeroConta) {
         this.nome = nome;
@@ -31,7 +37,12 @@ public class TestConta {
      */
     public static String formatarCPF(String cpf) {
         cpf = cpf.replaceAll("[^0-9]", ""); // Remover caracteres não numéricos
+        if (cpf.length() != 11){
+           return cpf = null;
+        }
+        else{
         return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+        }
     }
 
     
@@ -72,11 +83,11 @@ public class TestConta {
     /**
      * Método para checar se o CPF tem 11 caracteres, para a formatação não dar erro
      * 
-     * TODO: checar o CPF somente APÓS a remoção dos caracteres não-numerais.
+     * TODO: #1 checar o CPF somente APÓS a remoção dos caracteres não-numerais.
      * @param cpf
      * @return
      */
-    public static boolean checarCPF(String cpf){
+    public boolean checarCPF(String cpf){
         if (cpf.length() == 11){
             return true;
         }

@@ -45,7 +45,7 @@ public class Application {
                 String nome = sc.nextLine();
                 System.out.print("CPF (sem os pontos e linhas): ");
                 String CPF = sc.nextLine();
-                while (TestConta.checarCPF(CPF) == false) {
+                while (TestConta.formatarCPF(CPF) == null) {
                     System.out.println("Número inválido! O CPF deve conter exatamente 11 caracteres.");
                     System.out.print("CPF (sem os pontos e linhas): ");
                     CPF = sc.nextLine();
