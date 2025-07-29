@@ -45,27 +45,30 @@ public class Application {
                 String nome = sc.nextLine();
                 System.out.print("CPF (sem os pontos e linhas): ");
                 String CPF = sc.nextLine();
-                while (TestConta.formatarCPF(CPF) == null) {
-                    System.out.println("Número inválido! O CPF deve conter exatamente 11 caracteres.");
+                while (TestConta.formatarCPF(CPF) == null) {//Verifica se o CPF foi anulado pelo método formatarCPF
+                    System.out.println("Número inválido! O CPF deve conter exatamente 11 caracteres.");//Se sim, solicita ao usuário o CPF novamente, até o programa ser finalizado ou a informação for correta
                     System.out.print("CPF (sem os pontos e linhas): ");
                     CPF = sc.nextLine();
                 }
-                int numeroConta = random.nextInt(999999);
-                while (f.compararNomes(numeroConta)) {
+                int numeroConta = random.nextInt(999999); //Usa o java.util.random para gerar um número de 1 a 999999
+                while (f.compararNomes(numeroConta)) {//Compara o número gerado com a lista de arquivos já existente, se houver duplicidade, gera outro número
                     System.out.println("Tentando novamente....");
                     numeroConta = random.nextInt(999999);
                 }
 
-                File account = new File("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");
+                File account = new File("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");//Cria um arquivo .txt na pasta accounts, o nome sendo somente o número da conta
                 FileWriter ex = new FileWriter("C:\\JAVA\\teste\\Primeirão\\accounts\\" + numeroConta + ".txt");
-                TestConta conta1 = new TestConta(nome, CPF, numeroConta);
+                TestConta conta1 = new TestConta(nome, CPF, numeroConta); //Instancia a conta com as informações fornecidas
 
-                ex.write(conta1.toString());
+                ex.write(conta1.toString());//Escreve as informações da conta com o FileWriter
                 ex.close();
 
                 System.out.println("Conta criada com sucesso!" + conta1);
                 break;
 
+                /**
+                 * TODO: #2 Adicionar um sistema de verificação e acesso das contas já criadas, para a opção 2
+                 */
             case 2:
                 System.out.println("Opção indisponível! Tente novamente mais tarde");
                 break;
