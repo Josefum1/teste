@@ -84,6 +84,8 @@ public class Application {
                         System.out.println("Conta não encontrada! \nInsira o número da sua conta: ");
                         conta = sc.nextInt();
                     }
+                    //Pesquisa a conta pelo número e instancia ela baseada no retorno da classe FileUtil
+                    
                     TestConta resultado = new TestConta(f.pesquisa(conta).getNome(),
                             f.pesquisa(conta).getCpfFormatado(), f.pesquisa(conta).getNumeroConta(),
                             f.pesquisa(conta).getSaldoInicial());
