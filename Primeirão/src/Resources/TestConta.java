@@ -13,15 +13,16 @@ public class TestConta {
     private String cpf;
     private int numeroConta;
     public String cpfFormatado;
-
+    private double saldoInicial;
 
     public TestConta() {
     }
 
-    public TestConta(String nome, String cpf, int numeroConta) {
+    public TestConta(String nome, String cpf, int numeroConta, double saldoInicial) {
         this.nome = nome;
         this.cpfFormatado = formatarCPF(cpf);
         this.numeroConta = numeroConta;
+        this.saldoInicial = saldoInicial;
     }
 
     /**
@@ -72,18 +73,14 @@ public class TestConta {
         this.numeroConta = numeroConta;
     }
 
-    
-
     @Override
     /**
      * To String normal padrão, inclui o CPF formatado
      */
     public String toString() {
-        return " Conta " + numeroConta + "\nTitular: " + nome + "\nCPF: " + cpfFormatado;
+        return " Conta " + numeroConta + "\nTitular: " + nome + "\nCPF: " + cpfFormatado + "\nSaldo: " + saldoInicial;
 
     }
-
- 
 
     /**
      * Método para checar se o CPF tem 11 caracteres, para a formatação não dar erro
@@ -100,8 +97,8 @@ public class TestConta {
         }
     }
 
-    public String fileWriter(TestConta conta){
-        return String.valueOf(numeroConta) + "\n" + nome + "\n" + cpfFormatado;
+    public String fileWriter(TestConta conta) {
+        return String.valueOf(numeroConta) + " " + nome + " " + cpfFormatado + " " + saldoInicial;
     }
 
     public String getCpfFormatado() {
@@ -111,5 +108,15 @@ public class TestConta {
     public void setCpfFormatado(String cpfFormatado) {
         this.cpfFormatado = cpfFormatado;
     }
+
+    public double getSaldoInicial() {
+        return saldoInicial;
+    }
+
+    public void setSaldoInicial(double saldoInicial) {
+        this.saldoInicial = saldoInicial;
+    }
+
+    
 
 }

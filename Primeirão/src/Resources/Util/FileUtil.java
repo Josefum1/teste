@@ -48,34 +48,29 @@ public class FileUtil {
         return false;
     }
 
-    public boolean pesquisa(int numeroConta) {
+    public TestConta pesquisa(int numeroConta) {
         try (BufferedReader br = new BufferedReader(new FileReader(f + "\\" + String.valueOf(numeroConta) + ".txt"))) {
             String line;
             File c = new File(f + "\\" + String.valueOf(numeroConta) + ".txt");
             if (c.exists()) {
                 while ((line = br.readLine()) != null) {
-                    String[] parts = line.split(",");
+                    String[] parts = line.split(" ");
                     int numeroC = Integer.parseInt(parts[0].trim());
                     String nomeC = parts[1].trim();
                     String cpfC = parts[2].trim();
-                    contas.add(new TestConta(nomeC, cpfC, numeroC));
-                    
-                    for (TestConta conta : contas) {
-                        System.out.print(conta);
-                        return true;
+                    double saldoC = Double.parseDouble(parts[3].trim());
+                    TestConta resultado = new TestConta(nomeC, cpfC, numeroC, saldoC);
+                    return resultado;
                     }
                 }
-                  for (TestConta conta : contas) {
-                        System.out.print(conta);
-                        return true;
-                    }
-            } else {
-                return false;
+                 
+            else {
+                return null;
             }
         } catch (NumberFormatException | IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return false;
+        return null;
 
     }
 }
