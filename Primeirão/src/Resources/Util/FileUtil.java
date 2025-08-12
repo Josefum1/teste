@@ -47,7 +47,12 @@ public class FileUtil {
         }
         return false;
     }
-
+/**
+ * Método pesquisa, lê o atributo numeroConta e compara com o nome de todos os arquivos na pasta
+ com isso, caso a conta exista, ele cria um array com as informações contidas no arquivo, usando o BufferedReader e as separa pela ,
+ Cada parte sendo uma informação da conta. E adiciona a conta numa lista contas do tipo TestConta e imprime a lista
+ @return retorna um valor booleano baseado se a informação foi achada ou não
+    */
     public boolean pesquisa(int numeroConta) {
         try (BufferedReader br = new BufferedReader(new FileReader(f + "\\" + String.valueOf(numeroConta) + ".txt"))) {
             String line;
